@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name — CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Variables ─────────────────────────────────────────────────── */
+    :root {
+      --bg:        #0e0e0e;
+      --surface:   #161616;
+      --border:    #2a2a2a;
+      --muted:     #555;
+      --body:      #aaa;
+      --text:      #e8e3dc;
+      --accent:    #c9a96e;
+      --accent-dim:#7a5f38;
+      --serif:     'DM Serif Display', Georgia, serif;
+      --mono:      'DM Mono', monospace;
+      --sans:      'DM Sans', sans-serif;
+    }
+
+    /* ── Reset ──────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Layout ─────────────────────────────────────────────────────── */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── Reveal animation ───────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── Nav ────────────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(14,14,14,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-name {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--body);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); text-decoration: none; }
+
+    /* ── Hero ───────────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(201,169,110,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-tag {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      line-height: 1.02;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+    .hero-name em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-tagline {
+      font-size: 1.1rem;
+      color: var(--body);
+      max-width: 520px;
+      margin-bottom: 3rem;
+      line-height: 1.8;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 0.85rem 1.8rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .hero-cta:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .hero-cta svg { transition: transform 0.2s; }
+    .hero-cta:hover svg { transform: translateY(3px); }
+
+    /* ── Section base ───────────────────────────────────────────────── */
+    section {
+      padding: 7rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .section-heading {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+      margin-bottom: 2rem;
+    }
+
+    /* ── About ──────────────────────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .about-text p {
+      color: var(--body);
+      margin-bottom: 1.2rem;
+      font-size: 1.05rem;
+    }
+    .about-meta { }
+    .meta-item {
+      margin-bottom: 1.8rem;
+    }
+    .meta-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+    .meta-value {
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    /* ── Experience ─────────────────────────────────────────────────── */
+    .exp-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 3rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-date {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      padding-top: 0.25rem;
+    }
+    .exp-role {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      margin-bottom: 0.2rem;
+    }
+    .exp-company {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+    .exp-desc {
+      color: var(--body);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+    .exp-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.2rem;
+    }
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 0.25rem 0.65rem;
+    }
+
+    /* ── Skills ─────────────────────────────────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .skill-group-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-dim);
+      margin-bottom: 1rem;
+    }
+    .skill-list {
+      list-style: none;
+    }
+    .skill-list li {
+      color: var(--body);
+      font-size: 0.95rem;
+      padding: 0.45rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .skill-list li:last-child { border-bottom: none; }
+
+    /* ── Education ──────────────────────────────────────────────────── */
+    .edu-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 3rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .edu-item:last-child { border-bottom: none; }
+    .edu-date {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      padding-top: 0.25rem;
+    }
+    .edu-degree {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      margin-bottom: 0.2rem;
+    }
+    .edu-institution {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.8rem;
+    }
+    .edu-desc { color: var(--body); font-size: 0.95rem; }
+
+    /* ── Contact ────────────────────────────────────────────────────── */
+    #contact {
+      padding-bottom: 10rem;
+    }
+    .contact-heading {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 1.1;
+      margin-bottom: 2.5rem;
+    }
+    .contact-heading em { font-style: italic; color: var(--accent); }
+    .contact-links {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .contact-link {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--body);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.2rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .contact-link:hover { color: var(--accent); border-color: var(--accent); text-decoration: none; }
+
+    /* ── Footer ─────────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer span {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    /* ── Responsive ─────────────────────────────────────────────────── */
+    @media (max-width: 700px) {
+      .about-grid    { grid-template-columns: 1fr; gap: 3rem; }
+      .exp-item      { grid-template-columns: 1fr; gap: 0.5rem; }
+      .edu-item      { grid-template-columns: 1fr; gap: 0.5rem; }
+      .skills-grid   { grid-template-columns: 1fr; }
+      .nav-links     { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-name">Your Name</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="container">
+      <p class="hero-tag reveal">Available for opportunities</p>
+      <h1 class="hero-name reveal" style="transition-delay:0.1s">
+        Your<br /><em>Name</em>
+      </h1>
+      <p class="hero-tagline reveal" style="transition-delay:0.2s">
+        A one-line summary of what you do and the kind of work you're interested in.
+        Keep this punchy and specific.
+      </p>
+      <a href="#contact" class="hero-cta reveal" style="transition-delay:0.3s">
+        Get in touch
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M7 1v12M1 7l6 6 6-6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <p class="section-label reveal">01 — About</p>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>
+            Write a short paragraph about yourself here. Describe your professional
+            background, what drives you, and the type of problems you enjoy solving.
+          </p>
+          <p>
+            A second paragraph can cover your working style, values, or anything that
+            gives a sense of who you are beyond a list of job titles.
+          </p>
+        </div>
+        <div class="about-meta reveal" style="transition-delay:0.1s">
+          <div class="meta-item">
+            <p class="meta-label">Location</p>
+            <p class="meta-value">London, UK</p>
+          </div>
+          <div class="meta-item">
+            <p class="meta-label">Currently</p>
+            <p class="meta-value">Job Title at Company</p>
+          </div>
+          <div class="meta-item">
+            <p class="meta-label">Open to</p>
+            <p class="meta-value">Full-time · Freelance · Consulting</p>
+          </div>
+          <div class="meta-item">
+            <p class="meta-label">Languages</p>
+            <p class="meta-value">English · Other</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container">
+      <p class="section-label reveal">02 — Experience</p>
+
+      <div class="exp-item reveal">
+        <p class="exp-date">2022 — Present</p>
+        <div>
+          <h3 class="exp-role">Senior Job Title</h3>
+          <p class="exp-company">Company Name · London, UK</p>
+          <p class="exp-desc">
+            Describe what you did in this role. Focus on impact: what changed because you
+            were there? Quantify results where possible (e.g. reduced latency by 40%,
+            grew pipeline by £2M).
+          </p>
+          <div class="exp-tags">
+            <span class="tag">Skill A</span>
+            <span class="tag">Skill B</span>
+            <span class="tag">Tool C</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <p class="exp-date">2020 — 2022</p>
+        <div>
+          <h3 class="exp-role">Previous Job Title</h3>
+          <p class="exp-company">Previous Company · City, Country</p>
+          <p class="exp-desc">
+            Another role description. Keep each entry focused on outcomes rather than
+            responsibilities. Two to four sentences is usually enough.
+          </p>
+          <div class="exp-tags">
+            <span class="tag">Skill D</span>
+            <span class="tag">Skill E</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <p class="exp-date">2018 — 2020</p>
+        <div>
+          <h3 class="exp-role">Earlier Role</h3>
+          <p class="exp-company">Company Three · City, Country</p>
+          <p class="exp-desc">
+            Early-career roles can be shorter. One or two sentences is fine if the
+            impact is clear.
+          </p>
+          <div class="exp-tags">
+            <span class="tag">Skill F</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <p class="section-label reveal">03 — Skills</p>
+      <div class="skills-grid">
+        <div class="reveal">
+          <p class="skill-group-label">Technical</p>
+          <ul class="skill-list">
+            <li>Skill / Tool 1</li>
+            <li>Skill / Tool 2</li>
+            <li>Skill / Tool 3</li>
+            <li>Skill / Tool 4</li>
+          </ul>
+        </div>
+        <div class="reveal" style="transition-delay:0.1s">
+          <p class="skill-group-label">Domain</p>
+          <ul class="skill-list">
+            <li>Area of Expertise 1</li>
+            <li>Area of Expertise 2</li>
+            <li>Area of Expertise 3</li>
+            <li>Area of Expertise 4</li>
+          </ul>
+        </div>
+        <div class="reveal" style="transition-delay:0.2s">
+          <p class="skill-group-label">Soft Skills</p>
+          <ul class="skill-list">
+            <li>Leadership</li>
+            <li>Communication</li>
+            <li>Cross-functional collaboration</li>
+            <li>Mentoring</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="container">
+      <p class="section-label reveal">04 — Education</p>
+
+      <div class="edu-item reveal">
+        <p class="edu-date">2014 — 2018</p>
+        <div>
+          <h3 class="edu-degree">BSc / MSc / BA Your Degree</h3>
+          <p class="edu-institution">University Name</p>
+          <p class="edu-desc">Optional: grade, dissertation topic, notable projects or awards.</p>
+        </div>
+      </div>
+
+      <div class="edu-item reveal">
+        <p class="edu-date">2023</p>
+        <div>
+          <h3 class="edu-degree">Certification or Course Name</h3>
+          <p class="edu-institution">Issuing Body</p>
+          <p class="edu-desc">Optional short description.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <p class="section-label reveal">05 — Contact</p>
+      <h2 class="contact-heading reveal">
+        Let's work<br /><em>together.</em>
+      </h2>
+      <div class="contact-links reveal" style="transition-delay:0.1s">
+        <a class="contact-link" href="mailto:you@example.com">Email</a>
+        <a class="contact-link" href="https://linkedin.com/in/yourhandle" target="_blank">LinkedIn</a>
+        <a class="contact-link" href="https://github.com/yourhandle" target="_blank">GitHub</a>
+        <a class="contact-link" href="/cv.pdf" download>Download CV (PDF)</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© <span id="year"></span> Your Name</span>
+    <span>Built with HTML · Hosted on Netlify</span>
+  </footer>
+
+  <!-- JS: reveal on scroll + year -->
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    // Trigger hero elements immediately
+    document.querySelectorAll('#hero .reveal').forEach(el => {
+      setTimeout(() => el.classList.add('visible'), 100);
+    });
+
+    // Observe rest
+    reveals.forEach(el => {
+      if (!el.closest('#hero')) observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
