@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Name — CV</title>
+  <title>Maria Kalyva — CV</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -11,14 +11,14 @@
   <style>
     /* ── Variables ─────────────────────────────────────────────────── */
     :root {
-      --bg:        #0e0e0e;
-      --surface:   #161616;
-      --border:    #2a2a2a;
-      --muted:     #555;
-      --body:      #aaa;
-      --text:      #e8e3dc;
-      --accent:    #c9a96e;
-      --accent-dim:#7a5f38;
+      --bg:        #faf7f2;
+      --surface:   #f5ede5;
+      --border:    #e5d7cb;
+      --muted:     #9d8b7e;
+      --body:      #5d524a;
+      --text:      #2d2520;
+      --accent:    #d4a5a5;
+      --accent-dim:#e8c4c4;
       --serif:     'DM Serif Display', Georgia, serif;
       --mono:      'DM Mono', monospace;
       --sans:      'DM Sans', sans-serif;
@@ -65,7 +65,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(14,14,14,0.85);
+      background: rgba(250,247,242,0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
@@ -104,7 +104,7 @@
       position: absolute;
       top: -200px; right: -200px;
       width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(201,169,110,0.07) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(212,165,165,0.12) 0%, transparent 70%);
       pointer-events: none;
     }
     .hero-tag {
@@ -316,6 +316,50 @@
     }
     .edu-desc { color: var(--body); font-size: 0.95rem; }
 
+    /* ── Publications ───────────────────────────────────────────────── */
+    .pub-item {
+      padding: 1.8rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .pub-item:last-child { border-bottom: none; }
+    .pub-authors {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--body);
+      margin-bottom: 0.4rem;
+    }
+    .pub-title {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+      line-height: 1.5;
+    }
+    .pub-venue {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ── Awards ─────────────────────────────────────────────────────── */
+    .award-item {
+      padding: 1.8rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .award-item:last-child { border-bottom: none; }
+    .award-title {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+    .award-institution {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
     /* ── Contact ────────────────────────────────────────────────────── */
     #contact {
       padding-bottom: 10rem;
@@ -373,12 +417,13 @@
 
   <!-- NAV -->
   <nav>
-    <span class="nav-name">Your Name</span>
+    <span class="nav-name">Maria Kalyva</span>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#education">Education</a></li>
+      <li><a href="#publications">Publications</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -386,13 +431,13 @@
   <!-- HERO -->
   <section id="hero">
     <div class="container">
-      <p class="hero-tag reveal">Available for opportunities</p>
+      <p class="hero-tag reveal">Research & Academic Profile</p>
       <h1 class="hero-name reveal" style="transition-delay:0.1s">
-        Your<br /><em>Name</em>
+        Maria<br /><em>Kalyva</em>
       </h1>
       <p class="hero-tagline reveal" style="transition-delay:0.2s">
-        A one-line summary of what you do and the kind of work you're interested in.
-        Keep this punchy and specific.
+        Researcher and academic professional specializing in cutting-edge methodologies and scientific advancement.
+        Passionate about innovation and collaborative research.
       </p>
       <a href="#contact" class="hero-cta reveal" style="transition-delay:0.3s">
         Get in touch
@@ -410,30 +455,20 @@
       <div class="about-grid">
         <div class="about-text reveal">
           <p>
-            Write a short paragraph about yourself here. Describe your professional
-            background, what drives you, and the type of problems you enjoy solving.
+            Computational biologist with deep expertise in single-cell and long-read multi-omics. My research centres on quantifying dedifferentiation dynamics in human tissues, reconstructing cellular lineage histories through phylogenetic methods, and discovering novel transcript isoforms in cancer.
           </p>
           <p>
-            A second paragraph can cover your working style, values, or anything that
-            gives a sense of who you are beyond a list of job titles.
+            Experienced in integrating heterogeneous data modalities—including scRNA-seq, long-read RNA-seq, bulk transcriptomics, and whole-genome sequencing. I am seeking to apply these capabilities to understanding plasticity and reprogramming in an interdisciplinary research environment.
           </p>
         </div>
         <div class="about-meta reveal" style="transition-delay:0.1s">
           <div class="meta-item">
             <p class="meta-label">Location</p>
-            <p class="meta-value">London, UK</p>
+            <p class="meta-value">London, United Kingdom</p>
           </div>
           <div class="meta-item">
-            <p class="meta-label">Currently</p>
-            <p class="meta-value">Job Title at Company</p>
-          </div>
-          <div class="meta-item">
-            <p class="meta-label">Open to</p>
-            <p class="meta-value">Full-time · Freelance · Consulting</p>
-          </div>
-          <div class="meta-item">
-            <p class="meta-label">Languages</p>
-            <p class="meta-value">English · Other</p>
+            <p class="meta-label">Expertise</p>
+            <p class="meta-value">Single-cell · Multi-omics · Cancer Genomics</p>
           </div>
         </div>
       </div>
@@ -446,50 +481,51 @@
       <p class="section-label reveal">02 — Experience</p>
 
       <div class="exp-item reveal">
-        <p class="exp-date">2022 — Present</p>
+        <p class="exp-date">Apr 2024 — Present</p>
         <div>
-          <h3 class="exp-role">Senior Job Title</h3>
-          <p class="exp-company">Company Name · London, UK</p>
+          <h3 class="exp-role">Postdoctoral Research Fellow</h3>
+          <p class="exp-company">University College London (UCL) · Cancer Research UK Lung Cancer Centre of Excellence</p>
           <p class="exp-desc">
-            Describe what you did in this role. Focus on impact: what changed because you
-            were there? Quantify results where possible (e.g. reduced latency by 40%,
-            grew pipeline by £2M).
+            Leading computational study on transcriptional diversity and novel isoform discovery using Oxford Nanopore long-read RNA sequencing. Developing bioinformatic pipelines for isoform quantification and differential transcript usage analysis. Investigating immune–somatic cell co-evolution through multi-omic integration. Supervising PhD students and contributing to grant applications.
           </p>
           <div class="exp-tags">
-            <span class="tag">Skill A</span>
-            <span class="tag">Skill B</span>
-            <span class="tag">Tool C</span>
+            <span class="tag">Long-read RNA-seq</span>
+            <span class="tag">Isoform Analysis</span>
+            <span class="tag">Bioinformatics</span>
+            <span class="tag">Multi-omics</span>
           </div>
         </div>
       </div>
 
       <div class="exp-item reveal">
-        <p class="exp-date">2020 — 2022</p>
+        <p class="exp-date">Oct 2019 — Jan 2024</p>
         <div>
-          <h3 class="exp-role">Previous Job Title</h3>
-          <p class="exp-company">Previous Company · City, Country</p>
+          <h3 class="exp-role">PhD Researcher</h3>
+          <p class="exp-company">University of Cambridge & EMBL-EBI</p>
           <p class="exp-desc">
-            Another role description. Keep each entry focused on outcomes rather than
-            responsibilities. Two to four sentences is usually enough.
+            Reconstructed cellular lineage histories and quantified clonal dynamics at single-cell resolution using phylogenetic inference and Bayesian phylodynamic modelling. Developed cell-type deconvolution approaches using single-cell RNA-seq reference atlases. Integrated multi-modal datasets to study clonal architecture and genomic-state relationships. Thesis: "Elucidating the evolutionary dynamics of MSI tumours at the single-cell level"
           </p>
           <div class="exp-tags">
-            <span class="tag">Skill D</span>
-            <span class="tag">Skill E</span>
+            <span class="tag">Phylogenetics</span>
+            <span class="tag">Single-cell RNA-seq</span>
+            <span class="tag">Clonal Analysis</span>
+            <span class="tag">Multi-modal Integration</span>
           </div>
         </div>
       </div>
 
       <div class="exp-item reveal">
-        <p class="exp-date">2018 — 2020</p>
+        <p class="exp-date">Jan 2019 — Jul 2019</p>
         <div>
-          <h3 class="exp-role">Earlier Role</h3>
-          <p class="exp-company">Company Three · City, Country</p>
+          <h3 class="exp-role">Research Assistant (Bioinformatics)</h3>
+          <p class="exp-company">University College London (UCL)</p>
           <p class="exp-desc">
-            Early-career roles can be shorter. One or two sentences is fine if the
-            impact is clear.
+            Identified somatic copy number alterations and structural variants from whole-genome sequencing of human brain tissue. Implemented and optimised variant-calling pipelines for large-scale WGS datasets with custom filtering scripts for somatic variant detection.
           </p>
           <div class="exp-tags">
-            <span class="tag">Skill F</span>
+            <span class="tag">Variant Calling</span>
+            <span class="tag">WGS Analysis</span>
+            <span class="tag">Pipeline Development</span>
           </div>
         </div>
       </div>
@@ -503,30 +539,30 @@
       <p class="section-label reveal">03 — Skills</p>
       <div class="skills-grid">
         <div class="reveal">
-          <p class="skill-group-label">Technical</p>
+          <p class="skill-group-label">Programming</p>
           <ul class="skill-list">
-            <li>Skill / Tool 1</li>
-            <li>Skill / Tool 2</li>
-            <li>Skill / Tool 3</li>
-            <li>Skill / Tool 4</li>
+            <li>R, Python, Bash</li>
+            <li>Nextflow, Git</li>
+            <li>Singularity/Apptainer</li>
+            <li>HPC & Cloud Computing</li>
           </ul>
         </div>
         <div class="reveal" style="transition-delay:0.1s">
-          <p class="skill-group-label">Domain</p>
+          <p class="skill-group-label">Omics & Genomics</p>
           <ul class="skill-list">
-            <li>Area of Expertise 1</li>
-            <li>Area of Expertise 2</li>
-            <li>Area of Expertise 3</li>
-            <li>Area of Expertise 4</li>
+            <li>scRNA-seq & Long-read RNA/DNA</li>
+            <li>Isoform Quantification</li>
+            <li>Variant Calling (SNVs, CNVs, SVs)</li>
+            <li>Clonal Deconvolution</li>
           </ul>
         </div>
         <div class="reveal" style="transition-delay:0.2s">
-          <p class="skill-group-label">Soft Skills</p>
+          <p class="skill-group-label">Computational Biology</p>
           <ul class="skill-list">
-            <li>Leadership</li>
-            <li>Communication</li>
-            <li>Cross-functional collaboration</li>
-            <li>Mentoring</li>
+            <li>Phylogenetic Reconstruction</li>
+            <li>Cell-type Deconvolution</li>
+            <li>Multi-omic Integration</li>
+            <li>Differential Analysis</li>
           </ul>
         </div>
       </div>
@@ -539,46 +575,100 @@
       <p class="section-label reveal">04 — Education</p>
 
       <div class="edu-item reveal">
-        <p class="edu-date">2014 — 2018</p>
+        <p class="edu-date">Sep 2019 — Jan 2024</p>
         <div>
-          <h3 class="edu-degree">BSc / MSc / BA Your Degree</h3>
-          <p class="edu-institution">University Name</p>
-          <p class="edu-desc">Optional: grade, dissertation topic, notable projects or awards.</p>
+          <h3 class="edu-degree">PhD in Cancer Genomics and Evolution</h3>
+          <p class="edu-institution">University of Cambridge & EMBL-EBI</p>
+          <p class="edu-desc">Thesis: "Elucidating the evolutionary dynamics of MSI tumours at the single-cell level". College Senior Scholarship recipient (2020–2023).</p>
         </div>
       </div>
 
       <div class="edu-item reveal">
-        <p class="edu-date">2023</p>
+        <p class="edu-date">2014 — 2018</p>
         <div>
-          <h3 class="edu-degree">Certification or Course Name</h3>
-          <p class="edu-institution">Issuing Body</p>
-          <p class="edu-desc">Optional short description.</p>
+          <h3 class="edu-degree">BSc in Molecular Biology (Top 10%)</h3>
+          <p class="edu-institution">University of Crete</p>
+          <p class="edu-desc">Erasmus traineeship at University College London. World Hellenic Biomedical Association Scholarship (2018).</p>
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section id="publications">
+    <div class="container">
+      <p class="section-label reveal">05 — Publications</p>
+      <div class="pub-list">
+        <div class="pub-item reveal">
+          <p class="pub-authors">Kalyva M, McGranahan N. (2026).</p>
+          <p class="pub-title">Redefining cancer drivers with tissue-specific context.</p>
+          <p class="pub-venue"><em>Cancer Cell</em> (in press)</p>
+        </div>
+        <div class="pub-item reveal">
+          <p class="pub-authors">Kalyva M, Kildisiute G, Elmentaite R, et al. (2024).</p>
+          <p class="pub-title">Transcriptional signals of transformation in human cancer.</p>
+          <p class="pub-venue"><em>Genome Medicine</em></p>
+        </div>
+        <div class="pub-item reveal">
+          <p class="pub-authors">Van Egeren D, Kamaz B, Liu S, Kalyva M, et al. (2022).</p>
+          <p class="pub-title">Transcriptional differences between JAK2-V617F and wild-type bone marrow cells in myeloproliferative neoplasms.</p>
+          <p class="pub-venue"><em>Experimental Hematology</em></p>
+        </div>
+        <div class="pub-item reveal">
+          <p class="pub-authors">Van Egeren D, Escabi J, Nguyen M, Kalyva M, et al. (2021).</p>
+          <p class="pub-title">Reconstructing lineage histories and differentiation trajectories of individual cancer cells in myeloproliferative neoplasms.</p>
+          <p class="pub-venue"><em>Cell Stem Cell</em></p>
+        </div>
+        <div class="pub-item reveal">
+          <p class="pub-authors">Sekar S, Tomasini L, Proukakis C, Kalyva M, et al. (2020).</p>
+          <p class="pub-title">Complex mosaic structural variations in human fetal brains.</p>
+          <p class="pub-venue"><em>Genome Research</em></p>
+        </div>
+        <div class="pub-item reveal">
+          <p class="pub-authors">Perez-Rodriguez D, Kalyva M*, et al. (*equal contribution) (2019).</p>
+          <p class="pub-title">Investigation of somatic CNVs in brains of synucleinopathy cases using targeted SNCA analysis and single cell sequencing.</p>
+          <p class="pub-venue"><em>Acta Neuropathologica Communications</em></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AWARDS -->
+  <section id="awards">
+    <div class="container">
+      <p class="section-label reveal">06 — Awards & Scholarships</p>
+      <div class="award-list">
+        <div class="award-item reveal">
+          <p class="award-title">College Senior Scholarship</p>
+          <p class="award-institution">Fitzwilliam College, University of Cambridge (2020–2023)</p>
+        </div>
+        <div class="award-item reveal">
+          <p class="award-title">World Hellenic Biomedical Association Scholarship</p>
+          <p class="award-institution">2018</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- CONTACT -->
   <section id="contact">
     <div class="container">
-      <p class="section-label reveal">05 — Contact</p>
+      <p class="section-label reveal">07 — Contact</p>
       <h2 class="contact-heading reveal">
-        Let's work<br /><em>together.</em>
+        Get in<br /><em>touch.</em>
       </h2>
       <div class="contact-links reveal" style="transition-delay:0.1s">
-        <a class="contact-link" href="mailto:you@example.com">Email</a>
-        <a class="contact-link" href="https://linkedin.com/in/yourhandle" target="_blank">LinkedIn</a>
-        <a class="contact-link" href="https://github.com/yourhandle" target="_blank">GitHub</a>
-        <a class="contact-link" href="/cv.pdf" download>Download CV (PDF)</a>
+        <a class="contact-link" href="https://linkedin.com/in/mariakalyva" target="_blank">LinkedIn</a>
+        <a class="contact-link" href="https://orcid.org/" target="_blank">ORCID</a>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <span>© <span id="year"></span> Your Name</span>
-    <span>Built with HTML · Hosted on Netlify</span>
+    <span>© <span id="year"></span> Maria Kalyva</span>
+    <span>Academic Profile · Built with HTML</span>
   </footer>
 
   <!-- JS: reveal on scroll + year -->
