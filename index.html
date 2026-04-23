@@ -11,14 +11,15 @@
   <style>
     /* ── Variables ─────────────────────────────────────────────────── */
     :root {
-      --bg:        #faf7f2;
-      --surface:   #f5ede5;
-      --border:    #e5d7cb;
-      --muted:     #9d8b7e;
-      --body:      #5d524a;
-      --text:      #2d2520;
-      --accent:    #d4a5a5;
-      --accent-dim:#e8c4c4;
+      --bg:        #f4f6f9;
+      --surface:   #e8ecf3;
+      --border:    #c8d2e0;
+      --muted:     #6b7f96;
+      --body:      #3a4f65;
+      --text:      #0d1b2a;
+      --accent:    #1a6b8a;
+      --accent-dim:#4a9ab5;
+      --accent-light: #d0e8f2;
       --serif:     'DM Serif Display', Georgia, serif;
       --mono:      'DM Mono', monospace;
       --sans:      'DM Sans', sans-serif;
@@ -65,7 +66,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(250,247,242,0.92);
+      background: rgba(244,246,249,0.94);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
@@ -98,21 +99,41 @@
       padding-top: 80px;
       position: relative;
       overflow: hidden;
+      background: linear-gradient(135deg, #0d1b2a 0%, #12304a 55%, #0f2236 100%);
     }
-    #hero::before {
+
+    /* DNA canvas background */
+    #dna-canvas {
+      position: absolute;
+      top: 0; right: 0;
+      width: 55%;
+      height: 100%;
+      opacity: 0.9;
+    }
+
+    /* subtle grid overlay */
+    #hero::after {
       content: '';
       position: absolute;
-      top: -200px; right: -200px;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(212,165,165,0.12) 0%, transparent 70%);
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(26,107,138,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26,107,138,0.06) 1px, transparent 1px);
+      background-size: 40px 40px;
       pointer-events: none;
     }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
     .hero-tag {
       font-family: var(--mono);
       font-size: 0.72rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: #4aa8cc;
       margin-bottom: 1.5rem;
     }
     .hero-name {
@@ -120,17 +141,17 @@
       font-size: clamp(3.5rem, 8vw, 7rem);
       line-height: 1.02;
       letter-spacing: -0.01em;
-      color: var(--text);
+      color: #f0f4f8;
       margin-bottom: 1.5rem;
     }
     .hero-name em {
       font-style: italic;
-      color: var(--accent);
+      color: #4aa8cc;
     }
     .hero-tagline {
-      font-size: 1.1rem;
-      color: var(--body);
-      max-width: 520px;
+      font-size: 1.05rem;
+      color: #8aafc8;
+      max-width: 480px;
       margin-bottom: 3rem;
       line-height: 1.8;
     }
@@ -142,14 +163,15 @@
       font-size: 0.78rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--text);
-      border: 1px solid var(--border);
+      color: #f0f4f8;
+      border: 1px solid rgba(74,168,204,0.4);
       padding: 0.85rem 1.8rem;
-      transition: border-color 0.2s, color 0.2s;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
     }
     .hero-cta:hover {
-      border-color: var(--accent);
-      color: var(--accent);
+      border-color: #4aa8cc;
+      color: #4aa8cc;
+      background: rgba(74,168,204,0.07);
       text-decoration: none;
     }
     .hero-cta svg { transition: transform 0.2s; }
@@ -196,7 +218,6 @@
       margin-bottom: 1.2rem;
       font-size: 1.05rem;
     }
-    .about-meta { }
     .meta-item {
       margin-bottom: 1.8rem;
     }
@@ -257,8 +278,9 @@
       font-size: 0.65rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--muted);
-      border: 1px solid var(--border);
+      color: var(--accent);
+      border: 1px solid var(--accent-light);
+      background: var(--accent-light);
       padding: 0.25rem 0.65rem;
     }
 
@@ -361,9 +383,7 @@
     }
 
     /* ── Contact ────────────────────────────────────────────────────── */
-    #contact {
-      padding-bottom: 10rem;
-    }
+    #contact { padding-bottom: 10rem; }
     .contact-heading {
       font-family: var(--serif);
       font-size: clamp(2.5rem, 5vw, 4.5rem);
@@ -410,6 +430,7 @@
       .edu-item      { grid-template-columns: 1fr; gap: 0.5rem; }
       .skills-grid   { grid-template-columns: 1fr; }
       .nav-links     { display: none; }
+      #dna-canvas    { width: 100%; opacity: 0.25; }
     }
   </style>
 </head>
@@ -430,13 +451,14 @@
 
   <!-- HERO -->
   <section id="hero">
-    <div class="container">
-      <p class="hero-tag reveal">Research & Academic Profile</p>
+    <canvas id="dna-canvas"></canvas>
+    <div class="container hero-content">
+      <p class="hero-tag reveal">Research &amp; Academic Profile</p>
       <h1 class="hero-name reveal" style="transition-delay:0.1s">
         Maria<br /><em>Kalyva</em>
       </h1>
       <p class="hero-tagline reveal" style="transition-delay:0.2s">
-        Researcher and computional biologist with experience in cancer genomics, transcriptomics and bioinformatics. Passionate about interdisciplinary work and innovation.
+        Researcher and computational biologist with experience in cancer genomics, transcriptomics and bioinformatics. Passionate about interdisciplinary work and innovation.
       </p>
       <a href="#contact" class="hero-cta reveal" style="transition-delay:0.3s">
         Get in touch
@@ -500,7 +522,7 @@
         <p class="exp-date">Oct 2019 — Jan 2024</p>
         <div>
           <h3 class="exp-role">PhD Researcher</h3>
-          <p class="exp-company">University of Cambridge & EMBL-EBI</p>
+          <p class="exp-company">University of Cambridge &amp; EMBL-EBI</p>
           <p class="exp-desc">
             Reconstructed cellular lineage histories and quantified clonal dynamics at single-cell resolution using phylogenetic inference and Bayesian phylodynamic modelling. Developed cell-type deconvolution approaches using single-cell RNA-seq reference atlases. Integrated multi-modal datasets to study clonal architecture and genomic-state relationships. Thesis: "Elucidating the evolutionary dynamics of MSI tumours at the single-cell level"
           </p>
@@ -543,13 +565,13 @@
             <li>R, Python, Bash</li>
             <li>Nextflow, Git</li>
             <li>Singularity/Apptainer</li>
-            <li>HPC & Cloud Computing</li>
+            <li>HPC &amp; Cloud Computing</li>
           </ul>
         </div>
         <div class="reveal" style="transition-delay:0.1s">
-          <p class="skill-group-label">Omics & Genomics</p>
+          <p class="skill-group-label">Omics &amp; Genomics</p>
           <ul class="skill-list">
-            <li>scRNA-seq & Long-read RNA/DNA</li>
+            <li>scRNA-seq &amp; Long-read RNA/DNA</li>
             <li>Isoform Quantification</li>
             <li>Variant Calling (SNVs, CNVs, SVs)</li>
             <li>Clonal Deconvolution</li>
@@ -577,7 +599,7 @@
         <p class="edu-date">Sep 2019 — Jan 2024</p>
         <div>
           <h3 class="edu-degree">PhD in Cancer Genomics and Evolution</h3>
-          <p class="edu-institution">University of Cambridge & EMBL-EBI</p>
+          <p class="edu-institution">University of Cambridge &amp; EMBL-EBI</p>
           <p class="edu-desc">Thesis: "Elucidating the evolutionary dynamics of MSI tumours at the single-cell level". College Senior Scholarship recipient (2020–2023).</p>
         </div>
       </div>
@@ -636,7 +658,7 @@
   <!-- AWARDS -->
   <section id="awards">
     <div class="container">
-      <p class="section-label reveal">06 — Awards & Scholarships</p>
+      <p class="section-label reveal">06 — Awards &amp; Scholarships</p>
       <div class="award-list">
         <div class="award-item reveal">
           <p class="award-title">College Senior Scholarship</p>
@@ -670,10 +692,11 @@
     <span>Academic Profile · Built with HTML</span>
   </footer>
 
-  <!-- JS: reveal on scroll + year -->
   <script>
+    /* ── Year ─────────────────────────────────────────────────────────── */
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    /* ── Scroll reveal ───────────────────────────────────────────────── */
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
@@ -683,16 +706,150 @@
         }
       });
     }, { threshold: 0.12 });
-
-    // Trigger hero elements immediately
     document.querySelectorAll('#hero .reveal').forEach(el => {
       setTimeout(() => el.classList.add('visible'), 100);
     });
-
-    // Observe rest
     reveals.forEach(el => {
       if (!el.closest('#hero')) observer.observe(el);
     });
+
+    /* ── DNA Double Helix Canvas ─────────────────────────────────────── */
+    (function() {
+      const canvas = document.getElementById('dna-canvas');
+      const ctx    = canvas.getContext('2d');
+
+      // Configuration — B-form DNA geometry approximation
+      const STRAND_COLOR_A  = 'rgba(74, 168, 204, 0.85)';   // teal — strand 1
+      const STRAND_COLOR_B  = 'rgba(255, 255, 255, 0.55)';  // white — strand 2
+      const RUNG_COLOR      = 'rgba(74, 168, 204, 0.30)';   // base-pair rungs
+      const NODE_COLOR_A    = 'rgba(74, 168, 204, 1)';
+      const NODE_COLOR_B    = 'rgba(200, 220, 235, 0.9)';
+      const BASE_COLORS     = [
+        'rgba(52,  211, 153, 0.75)',  // G — green
+        'rgba(251, 191,  36, 0.75)',  // C — amber
+        'rgba(74,  168, 204, 0.75)',  // A — teal
+        'rgba(239, 118,  98, 0.75)',  // T — coral
+      ];
+
+      const PERIOD      = 280;   // px per full helical turn
+      const AMPLITUDE   = 90;    // px lateral amplitude
+      const NODE_RADIUS = 4.5;   // px node circle radius
+      const RUNG_COUNT  = 10;    // base-pair rungs per turn
+      const SPEED       = 0.3;   // px per frame scroll speed
+
+      let offset = 0;
+      let raf;
+
+      function resize() {
+        canvas.width  = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+      }
+
+      window.addEventListener('resize', resize);
+      resize();
+
+      /**
+       * For a given y position along the helix axis and a phase offset,
+       * returns the x coordinate of a strand backbone point.
+       * Strand A: sin(phase), Strand B: sin(phase + π)
+       */
+      function strandX(y, phase, cx) {
+        return cx + AMPLITUDE * Math.sin((2 * Math.PI * y / PERIOD) + phase);
+      }
+
+      function draw() {
+        const W  = canvas.width;
+        const H  = canvas.height;
+        const cx = W * 0.42; // horizontal centre of helix
+
+        ctx.clearRect(0, 0, W, H);
+
+        const totalY   = H + PERIOD;
+        const startY   = -PERIOD / 2;
+        const steps    = 400; // polyline resolution
+        const dy       = totalY / steps;
+
+        // ── Draw strand backbones ──────────────────────────────────────
+        function drawStrand(phaseOffset, color) {
+          ctx.beginPath();
+          ctx.strokeStyle = color;
+          ctx.lineWidth   = 2.5;
+          ctx.lineCap     = 'round';
+          for (let i = 0; i <= steps; i++) {
+            const y = startY + i * dy;
+            const x = strandX(y + offset, phaseOffset, cx);
+            if (i === 0) ctx.moveTo(x, y);
+            else         ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+        }
+
+        drawStrand(0,      STRAND_COLOR_A);
+        drawStrand(Math.PI, STRAND_COLOR_B);
+
+        // ── Draw base-pair rungs and nodes ────────────────────────────
+        const rungsTotal = Math.ceil(totalY / (PERIOD / RUNG_COUNT)) + 2;
+        for (let r = 0; r < rungsTotal; r++) {
+          const yRaw  = startY + r * (PERIOD / RUNG_COUNT);
+          const y     = yRaw;
+          const yOff  = y + offset;
+          const xA    = strandX(yOff, 0,         cx);
+          const xB    = strandX(yOff, Math.PI,   cx);
+
+          // depth cue: nodes behind the axis (cos < 0) are dimmer
+          const cosVal = Math.cos((2 * Math.PI * yOff / PERIOD));
+          const alpha  = 0.35 + 0.65 * ((cosVal + 1) / 2);
+
+          // rung line
+          ctx.beginPath();
+          ctx.strokeStyle = RUNG_COLOR;
+          ctx.lineWidth   = 1.5;
+          ctx.globalAlpha = alpha * 0.8;
+          ctx.moveTo(xA, y);
+          ctx.lineTo(xB, y);
+          ctx.stroke();
+          ctx.globalAlpha = 1;
+
+          // base colour (alternating 4 bases)
+          const baseIdx = r % 4;
+
+          // node A
+          ctx.beginPath();
+          ctx.fillStyle   = BASE_COLORS[baseIdx];
+          ctx.globalAlpha = alpha;
+          ctx.arc(xA, y, NODE_RADIUS, 0, Math.PI * 2);
+          ctx.fill();
+
+          // node B (complementary base — offset by 2 in the palette)
+          ctx.beginPath();
+          ctx.fillStyle   = BASE_COLORS[(baseIdx + 2) % 4];
+          ctx.arc(xB, y, NODE_RADIUS, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.globalAlpha = 1;
+        }
+
+        // ── Animate ────────────────────────────────────────────────────
+        offset += SPEED;
+        if (offset > PERIOD) offset -= PERIOD;
+
+        raf = requestAnimationFrame(draw);
+      }
+
+      draw();
+
+      // Pause when hero is not visible to save resources
+      const heroEl = document.getElementById('hero');
+      const heroObs = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+          if (!raf) raf = requestAnimationFrame(draw);
+        } else {
+          cancelAnimationFrame(raf);
+          raf = null;
+        }
+      }, { threshold: 0.01 });
+      heroObs.observe(heroEl);
+    })();
   </script>
 
 </body>
