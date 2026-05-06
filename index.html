@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <style>
-    /* ── Variables ─────────────────────────────────────────────────── */
     :root {
       --bg:        #f4f6f9;
       --surface:   #e8ecf3;
@@ -25,7 +24,6 @@
       --sans:      'DM Sans', sans-serif;
     }
 
-    /* ── Reset ──────────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -39,14 +37,12 @@
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    /* ── Layout ─────────────────────────────────────────────────────── */
     .container {
       max-width: 900px;
       margin: 0 auto;
       padding: 0 2rem;
     }
 
-    /* ── Reveal animation ───────────────────────────────────────────── */
     .reveal {
       opacity: 0;
       transform: translateY(24px);
@@ -57,7 +53,6 @@
       transform: none;
     }
 
-    /* ── Nav ────────────────────────────────────────────────────────── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -91,7 +86,6 @@
     }
     .nav-links a:hover { color: var(--accent); text-decoration: none; }
 
-    /* ── Hero ───────────────────────────────────────────────────────── */
     #hero {
       min-height: 100vh;
       display: flex;
@@ -102,7 +96,6 @@
       background: linear-gradient(135deg, #0d1b2a 0%, #12304a 55%, #0f2236 100%);
     }
 
-    /* DNA canvas background */
     #dna-canvas {
       position: absolute;
       top: 0; right: 0;
@@ -111,7 +104,6 @@
       opacity: 0.9;
     }
 
-    /* subtle grid overlay */
     #hero::after {
       content: '';
       position: absolute;
@@ -123,10 +115,7 @@
       pointer-events: none;
     }
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-    }
+    .hero-content { position: relative; z-index: 2; }
 
     .hero-tag {
       font-family: var(--mono);
@@ -144,10 +133,7 @@
       color: #f0f4f8;
       margin-bottom: 1.5rem;
     }
-    .hero-name em {
-      font-style: italic;
-      color: #4aa8cc;
-    }
+    .hero-name em { font-style: italic; color: #4aa8cc; }
     .hero-tagline {
       font-size: 1.05rem;
       color: #8aafc8;
@@ -177,7 +163,6 @@
     .hero-cta svg { transition: transform 0.2s; }
     .hero-cta:hover svg { transform: translateY(3px); }
 
-    /* ── Section base ───────────────────────────────────────────────── */
     section {
       padding: 7rem 0;
       border-top: 1px solid var(--border);
@@ -206,6 +191,118 @@
       margin-bottom: 2rem;
     }
 
+    /* ── SKILLS TREE ───────────────────────────────────────────────── */
+    .skills-tree-intro {
+      color: var(--body);
+      font-size: 1.05rem;
+      margin-bottom: 3.5rem;
+      max-width: 600px;
+      line-height: 1.8;
+    }
+
+    .paths-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    .path-column {
+      position: relative;
+    }
+
+    /* vertical connector line */
+    .path-column::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 3.6rem;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--border), transparent);
+      transform: translateX(-50%);
+      z-index: 0;
+    }
+
+    .path-header {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-dim);
+      margin-bottom: 1.8rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+
+    .talent-item {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 1.4rem;
+    }
+
+    /* connector dot from line to card */
+    .talent-item::before {
+      content: '';
+      position: absolute;
+      left: calc(50% - 1px);
+      top: -0.7rem;
+      width: 1px;
+      height: 0.7rem;
+      background: var(--border);
+    }
+
+    .talent-card {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 1rem 1.1rem 0.9rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .talent-card:hover {
+      border-color: var(--accent-dim);
+      box-shadow: 0 2px 12px rgba(26,107,138,0.08);
+    }
+
+    .talent-name {
+      font-family: var(--sans);
+      font-size: 0.88rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 0.55rem;
+      line-height: 1.3;
+    }
+
+    .talent-level {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .level-pip {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1.5px solid var(--accent-dim);
+      background: transparent;
+      transition: background 0.15s;
+    }
+    .level-pip.filled {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .talent-level-label {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-left: 6px;
+    }
+
     /* ── About ──────────────────────────────────────────────────────── */
     .about-grid {
       display: grid;
@@ -213,14 +310,8 @@
       gap: 5rem;
       align-items: start;
     }
-    .about-text p {
-      color: var(--body);
-      margin-bottom: 1.2rem;
-      font-size: 1.05rem;
-    }
-    .meta-item {
-      margin-bottom: 1.8rem;
-    }
+    .about-text p { color: var(--body); margin-bottom: 1.2rem; font-size: 1.05rem; }
+    .meta-item { margin-bottom: 1.8rem; }
     .meta-label {
       font-family: var(--mono);
       font-size: 0.65rem;
@@ -229,62 +320,9 @@
       color: var(--muted);
       margin-bottom: 0.3rem;
     }
-    .meta-value {
-      color: var(--text);
-      font-size: 0.95rem;
-    }
+    .meta-value { color: var(--text); font-size: 0.95rem; }
 
-    /* ── Experience ─────────────────────────────────────────────────── */
-    .exp-item {
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 3rem;
-      padding: 2.5rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .exp-item:last-child { border-bottom: none; }
-    .exp-date {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--muted);
-      letter-spacing: 0.05em;
-      padding-top: 0.25rem;
-    }
-    .exp-role {
-      font-family: var(--serif);
-      font-size: 1.4rem;
-      margin-bottom: 0.2rem;
-    }
-    .exp-company {
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-      margin-bottom: 1rem;
-    }
-    .exp-desc {
-      color: var(--body);
-      font-size: 0.95rem;
-      line-height: 1.8;
-    }
-    .exp-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 1.2rem;
-    }
-    .tag {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid var(--accent-light);
-      background: var(--accent-light);
-      padding: 0.25rem 0.65rem;
-    }
-
-    /* ── Skills ─────────────────────────────────────────────────────── */
+    /* ── Original Skills section (now renamed to Tools) ─────────────── */
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -298,9 +336,7 @@
       color: var(--accent-dim);
       margin-bottom: 1rem;
     }
-    .skill-list {
-      list-style: none;
-    }
+    .skill-list { list-style: none; }
     .skill-list li {
       color: var(--body);
       font-size: 0.95rem;
@@ -308,6 +344,50 @@
       border-bottom: 1px solid var(--border);
     }
     .skill-list li:last-child { border-bottom: none; }
+
+    /* ── Tools ──────────────────────────────────────────────────────── */
+    .tool-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 3rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .tool-item:last-child { border-bottom: none; }
+    .tool-badge {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      padding-top: 0.25rem;
+    }
+    .tool-name {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      margin-bottom: 0.2rem;
+    }
+    .tool-link {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .tool-link:hover { text-decoration: underline; }
+    .tool-desc {
+      color: var(--body);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+    .tool-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.2rem;
+    }
 
     /* ── Education ──────────────────────────────────────────────────── */
     .edu-item {
@@ -318,84 +398,29 @@
       border-bottom: 1px solid var(--border);
     }
     .edu-item:last-child { border-bottom: none; }
-    .edu-date {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--muted);
-      padding-top: 0.25rem;
-    }
-    .edu-degree {
-      font-family: var(--serif);
-      font-size: 1.3rem;
-      margin-bottom: 0.2rem;
-    }
-    .edu-institution {
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-      margin-bottom: 0.8rem;
-    }
+    .edu-date { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); padding-top: 0.25rem; }
+    .edu-degree { font-family: var(--serif); font-size: 1.3rem; margin-bottom: 0.2rem; }
+    .edu-institution { font-family: var(--mono); font-size: 0.78rem; color: var(--accent); letter-spacing: 0.05em; margin-bottom: 0.8rem; }
     .edu-desc { color: var(--body); font-size: 0.95rem; }
 
     /* ── Publications ───────────────────────────────────────────────── */
-    .pub-item {
-      padding: 1.8rem 0;
-      border-bottom: 1px solid var(--border);
-    }
+    .pub-item { padding: 1.8rem 0; border-bottom: 1px solid var(--border); }
     .pub-item:last-child { border-bottom: none; }
-    .pub-authors {
-      font-family: var(--mono);
-      font-size: 0.85rem;
-      color: var(--body);
-      margin-bottom: 0.4rem;
-    }
-    .pub-title {
-      font-family: var(--serif);
-      font-size: 1.05rem;
-      color: var(--text);
-      margin-bottom: 0.4rem;
-      line-height: 1.5;
-    }
-    .pub-venue {
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
+    .pub-authors { font-family: var(--mono); font-size: 0.85rem; color: var(--body); margin-bottom: 0.4rem; }
+    .pub-title { font-family: var(--serif); font-size: 1.05rem; color: var(--text); margin-bottom: 0.4rem; line-height: 1.5; }
+    .pub-venue { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); }
 
     /* ── Awards ─────────────────────────────────────────────────────── */
-    .award-item {
-      padding: 1.8rem 0;
-      border-bottom: 1px solid var(--border);
-    }
+    .award-item { padding: 1.8rem 0; border-bottom: 1px solid var(--border); }
     .award-item:last-child { border-bottom: none; }
-    .award-title {
-      font-family: var(--serif);
-      font-size: 1.1rem;
-      color: var(--text);
-      margin-bottom: 0.3rem;
-    }
-    .award-institution {
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      color: var(--muted);
-      letter-spacing: 0.05em;
-    }
+    .award-title { font-family: var(--serif); font-size: 1.1rem; color: var(--text); margin-bottom: 0.3rem; }
+    .award-institution { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); letter-spacing: 0.05em; }
 
     /* ── Contact ────────────────────────────────────────────────────── */
     #contact { padding-bottom: 10rem; }
-    .contact-heading {
-      font-family: var(--serif);
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
-      line-height: 1.1;
-      margin-bottom: 2.5rem;
-    }
+    .contact-heading { font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.1; margin-bottom: 2.5rem; }
     .contact-heading em { font-style: italic; color: var(--accent); }
-    .contact-links {
-      display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
+    .contact-links { display: flex; gap: 2rem; flex-wrap: wrap; }
     .contact-link {
       font-family: var(--mono);
       font-size: 0.78rem;
@@ -408,7 +433,6 @@
     }
     .contact-link:hover { color: var(--accent); border-color: var(--accent); text-decoration: none; }
 
-    /* ── Footer ─────────────────────────────────────────────────────── */
     footer {
       border-top: 1px solid var(--border);
       padding: 2rem;
@@ -416,40 +440,33 @@
       justify-content: space-between;
       align-items: center;
     }
-    footer span {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-    }
+    footer span { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted); }
 
-    /* ── Responsive ─────────────────────────────────────────────────── */
     @media (max-width: 700px) {
       .about-grid    { grid-template-columns: 1fr; gap: 3rem; }
-      .exp-item      { grid-template-columns: 1fr; gap: 0.5rem; }
       .edu-item      { grid-template-columns: 1fr; gap: 0.5rem; }
+      .paths-grid    { grid-template-columns: 1fr; }
       .skills-grid   { grid-template-columns: 1fr; }
       .nav-links     { display: none; }
       #dna-canvas    { width: 100%; opacity: 0.25; }
+      .path-column::before { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
     <span class="nav-name">Maria Kalyva</span>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Skills</a></li>
+      <li><a href="#tools">Tools</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#publications">Publications</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
-  <!-- HERO -->
   <section id="hero">
     <canvas id="dna-canvas"></canvas>
     <div class="container hero-content">
@@ -469,18 +486,14 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
   <section id="about">
     <div class="container">
       <p class="section-label reveal">01 — About</p>
       <div class="about-grid">
         <div class="about-text reveal">
-          <p>
-            Computational biologist with deep expertise in cancer genomics and long-read multi-omics. My current research centres on characterising transcriptional diversity in lung cancer using long-read multiomic methods.
-          </p>
-          <p>
-            Experienced in integrating heterogeneous data modalities—including scRNA-seq, long-read RNA-seq, bulk transcriptomics, and whole-genome sequencing.
-          </p>
+          <p>Hi! I am Maria. I finished my bachelor's degree in molecular biology in Crete, Greece, with an interest in species evolution and computational biology.</p>
+          <p>I then did my PhD at EMBL-EBI, Cambridge, becoming an expert in cancer genomics and cancer evolution.</p>
+          <p>I'm currently a fellow between UCL and the Crick Institute, using long-read RNA technologies to understand transcriptomic diversity in multi-regional cancer patient data.</p>
         </div>
         <div class="about-meta reveal" style="transition-delay:0.1s">
           <div class="meta-item">
@@ -496,105 +509,48 @@
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
+  <!-- COMPETENCIES (replaces Experience) -->
   <section id="experience">
     <div class="container">
-      <p class="section-label reveal">02 — Experience</p>
-
-      <div class="exp-item reveal">
-        <p class="exp-date">Apr 2024 — Present</p>
-        <div>
-          <h3 class="exp-role">Postdoctoral Research Fellow</h3>
-          <p class="exp-company">University College London (UCL) · Cancer Research UK Lung Cancer Centre of Excellence</p>
-          <p class="exp-desc">
-            Leading computational study on transcriptional diversity and isoform discovery using Oxford Nanopore long-read RNA sequencing. Developing bioinformatic pipelines for isoform quantification and differential transcript usage analysis. Supervising PhD students and contributing to grant applications.
-          </p>
-          <div class="exp-tags">
-            <span class="tag">Long-read RNA-seq</span>
-            <span class="tag">Isoform Analysis</span>
-            <span class="tag">Bioinformatics</span>
-            <span class="tag">Multi-omics</span>
-          </div>
-        </div>
+      <p class="section-label reveal">02 — Skills</p>
+      <div class="paths-grid" id="paths-grid">
+        <!-- rendered by JS from JSON -->
       </div>
-
-      <div class="exp-item reveal">
-        <p class="exp-date">Oct 2019 — Jan 2024</p>
-        <div>
-          <h3 class="exp-role">PhD Researcher</h3>
-          <p class="exp-company">University of Cambridge &amp; EMBL-EBI</p>
-          <p class="exp-desc">
-            Reconstructed cellular lineage histories and quantified clonal dynamics at single-cell resolution using phylogenetic inference and Bayesian phylodynamic modelling. Developed cell-type deconvolution approaches using single-cell RNA-seq reference atlases. Integrated multi-modal datasets to study clonal architecture and genomic-state relationships. Thesis: "Elucidating the evolutionary dynamics of MSI tumours at the single-cell level"
-          </p>
-          <div class="exp-tags">
-            <span class="tag">Phylogenetics</span>
-            <span class="tag">Single-cell RNA-seq</span>
-            <span class="tag">Clonal Analysis</span>
-            <span class="tag">Multi-modal Integration</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="exp-item reveal">
-        <p class="exp-date">Jan 2019 — Jul 2019</p>
-        <div>
-          <h3 class="exp-role">Research Assistant (Bioinformatics)</h3>
-          <p class="exp-company">University College London (UCL)</p>
-          <p class="exp-desc">
-            Identified somatic copy number alterations and structural variants from whole-genome sequencing of human brain tissue. Implemented and optimised variant-calling pipelines for large-scale WGS datasets with custom filtering scripts for somatic variant detection.
-          </p>
-          <div class="exp-tags">
-            <span class="tag">Variant Calling</span>
-            <span class="tag">WGS Analysis</span>
-            <span class="tag">Pipeline Development</span>
-          </div>
-        </div>
-      </div>
-
     </div>
   </section>
 
-  <!-- SKILLS -->
-  <section id="skills">
+  <!-- TOOLS -->
+  <section id="tools">
     <div class="container">
-      <p class="section-label reveal">03 — Skills</p>
-      <div class="skills-grid">
-        <div class="reveal">
-          <p class="skill-group-label">Programming</p>
-          <ul class="skill-list">
-            <li>R, Python, Bash</li>
-            <li>Nextflow, Git</li>
-            <li>Singularity/Apptainer</li>
-            <li>HPC &amp; Cloud Computing</li>
-          </ul>
-        </div>
-        <div class="reveal" style="transition-delay:0.1s">
-          <p class="skill-group-label">Omics &amp; Genomics</p>
-          <ul class="skill-list">
-            <li>scRNA-seq &amp; Long-read RNA/DNA</li>
-            <li>Isoform Quantification</li>
-            <li>Variant Calling (SNVs, CNVs, SVs)</li>
-            <li>Clonal Deconvolution</li>
-          </ul>
-        </div>
-        <div class="reveal" style="transition-delay:0.2s">
-          <p class="skill-group-label">Computational Biology</p>
-          <ul class="skill-list">
-            <li>Phylogenetic Reconstruction</li>
-            <li>Cell-type Deconvolution</li>
-            <li>Multi-omic Integration</li>
-            <li>Differential Analysis</li>
-          </ul>
+      <p class="section-label reveal">03 — Tools</p>
+      <div class="reveal">
+        <div class="tool-item">
+          <p class="tool-badge">Python · Simulation</p>
+          <div>
+            <h3 class="tool-name">ClonalSim</h3>
+            <a class="tool-link" href="https://github.com/cortes-ciriano-lab/ClonalSim" target="_blank">
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+              github.com/cortes-ciriano-lab/ClonalSim
+            </a>
+            <p class="tool-desc">
+              An object-oriented Python simulator for clonal expansions implementing a Wright-Fisher model with selection. Developed as part of the MSI tumour evolution project. Simulates mutant cell counts per generation via binomial sampling, supports variable mutation rates for MMRD hypermutated contexts, and converts population arrays into treeswift-compatible tree objects for downstream phylogenetic analysis. Includes Approximate Bayesian Computation integration for parameter inference.
+            </p>
+            <div class="tool-tags">
+              <span class="tag">Wright-Fisher</span>
+              <span class="tag">Clonal Dynamics</span>
+              <span class="tag">MSI / MMRD</span>
+              <span class="tag">ABC</span>
+              <span class="tag">Phylogenetics</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- EDUCATION -->
   <section id="education">
     <div class="container">
       <p class="section-label reveal">04 — Education</p>
-
       <div class="edu-item reveal">
         <p class="edu-date">Sep 2019 — Jan 2024</p>
         <div>
@@ -603,7 +559,6 @@
           <p class="edu-desc">Thesis: "Elucidating the evolutionary dynamics of MSI tumours at the single-cell level". College Senior Scholarship recipient (2020–2023).</p>
         </div>
       </div>
-
       <div class="edu-item reveal">
         <p class="edu-date">2014 — 2018</p>
         <div>
@@ -612,11 +567,9 @@
           <p class="edu-desc">Erasmus traineeship at University College London. World Hellenic Biomedical Association Scholarship (2018).</p>
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- PUBLICATIONS -->
   <section id="publications">
     <div class="container">
       <p class="section-label reveal">05 — Publications</p>
@@ -655,7 +608,6 @@
     </div>
   </section>
 
-  <!-- AWARDS -->
   <section id="awards">
     <div class="container">
       <p class="section-label reveal">06 — Awards &amp; Scholarships</p>
@@ -672,13 +624,10 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact">
     <div class="container">
       <p class="section-label reveal">07 — Contact</p>
-      <h2 class="contact-heading reveal">
-        Get in<br /><em>touch.</em>
-      </h2>
+      <h2 class="contact-heading reveal">Get in<br /><em>touch.</em></h2>
       <div class="contact-links reveal" style="transition-delay:0.1s">
         <a class="contact-link" href="https://www.linkedin.com/in/maria-kalyva-090608132" target="_blank">LinkedIn</a>
         <a class="contact-link" href="https://orcid.org/0000-0002-4891-6152" target="_blank">ORCID</a>
@@ -686,169 +635,186 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <span>© <span id="year"></span> Maria Kalyva</span>
     <span>Academic Profile · Built with HTML</span>
   </footer>
 
   <script>
-    /* ── Year ─────────────────────────────────────────────────────────── */
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    /* ── Scroll reveal ───────────────────────────────────────────────── */
+    /* ── Scroll reveal ─────────────────────────────────────────────── */
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
       });
     }, { threshold: 0.12 });
     document.querySelectorAll('#hero .reveal').forEach(el => {
       setTimeout(() => el.classList.add('visible'), 100);
     });
-    reveals.forEach(el => {
-      if (!el.closest('#hero')) observer.observe(el);
+    reveals.forEach(el => { if (!el.closest('#hero')) observer.observe(el); });
+
+    /* ── Skills tree from JSON ─────────────────────────────────────── */
+    const LEVEL_LABELS = ['', 'Foundational', 'Basic', 'Proficient', 'Advanced', 'Expert'];
+
+    const skillsData = {
+      "paths": [
+        {
+          "name": "Scientific",
+          "talents": [
+            { "name": "Mutation Calling (SNV, CNV, SV)", "level": 5 },
+            { "name": "Long-read omics",                 "level": 4 },
+            { "name": "Single-cell analysis",            "level": 3 },
+            { "name": "Cancer research",                 "level": 4 },
+            { "name": "Transcriptomics",                 "level": 4 },
+            { "name": "Cancer evolution",                "level": 4 }
+          ]
+        },
+        {
+          "name": "Coding",
+          "talents": [
+            { "name": "Python",             "level": 3 },
+            { "name": "R",                  "level": 4 },
+            { "name": "GitHub",             "level": 3 },
+            { "name": "Nextflow",           "level": 2 },
+            { "name": "Data visualisation", "level": 4 }
+          ]
+        },
+        {
+          "name": "Soft Skills",
+          "talents": [
+            { "name": "Project Management", "level": 3 },
+            { "name": "Supervision",        "level": 2 },
+            { "name": "Teaching",           "level": 3 },
+            { "name": "Speaking",           "level": 3 },
+            { "name": "Writing",            "level": 4 }
+          ]
+        }
+      ]
+    };
+
+    function renderPips(level) {
+      return Array.from({ length: 5 }, (_, i) =>
+        `<span class="level-pip ${i < level ? 'filled' : ''}"></span>`
+      ).join('');
+    }
+
+    const grid = document.getElementById('paths-grid');
+
+    skillsData.paths.forEach((path, pi) => {
+      const col = document.createElement('div');
+      col.className = 'path-column reveal';
+      col.style.transitionDelay = `${pi * 0.1}s`;
+
+      const header = document.createElement('p');
+      header.className = 'path-header';
+      header.textContent = path.name;
+      col.appendChild(header);
+
+      path.talents.forEach((t, ti) => {
+        const item = document.createElement('div');
+        item.className = 'talent-item';
+
+        item.innerHTML = `
+          <div class="talent-card">
+            <p class="talent-name">${t.name}</p>
+            <div class="talent-level">
+              ${renderPips(t.level)}
+              <span class="talent-level-label">${LEVEL_LABELS[t.level]}</span>
+            </div>
+          </div>`;
+        col.appendChild(item);
+      });
+
+      grid.appendChild(col);
     });
 
-    /* ── DNA Double Helix Canvas ─────────────────────────────────────── */
+    /* re-observe newly created .reveal elements */
+    document.querySelectorAll('#paths-grid .reveal').forEach(el => observer.observe(el));
+
+    /* ── DNA Double Helix Canvas ───────────────────────────────────── */
     (function() {
       const canvas = document.getElementById('dna-canvas');
       const ctx    = canvas.getContext('2d');
 
-      // Configuration — B-form DNA geometry approximation
-      const STRAND_COLOR_A  = 'rgba(74, 168, 204, 0.85)';   // teal — strand 1
-      const STRAND_COLOR_B  = 'rgba(255, 255, 255, 0.55)';  // white — strand 2
-      const RUNG_COLOR      = 'rgba(74, 168, 204, 0.30)';   // base-pair rungs
-      const NODE_COLOR_A    = 'rgba(74, 168, 204, 1)';
-      const NODE_COLOR_B    = 'rgba(200, 220, 235, 0.9)';
-      const BASE_COLORS     = [
-        'rgba(52,  211, 153, 0.75)',  // G — green
-        'rgba(251, 191,  36, 0.75)',  // C — amber
-        'rgba(74,  168, 204, 0.75)',  // A — teal
-        'rgba(239, 118,  98, 0.75)',  // T — coral
+      const STRAND_COLOR_A = 'rgba(74, 168, 204, 0.85)';
+      const STRAND_COLOR_B = 'rgba(255, 255, 255, 0.55)';
+      const RUNG_COLOR     = 'rgba(74, 168, 204, 0.30)';
+      const BASE_COLORS    = [
+        'rgba(52,  211, 153, 0.75)',
+        'rgba(251, 191,  36, 0.75)',
+        'rgba(74,  168, 204, 0.75)',
+        'rgba(239, 118,  98, 0.75)',
       ];
 
-      const PERIOD      = 280;   // px per full helical turn
-      const AMPLITUDE   = 90;    // px lateral amplitude
-      const NODE_RADIUS = 4.5;   // px node circle radius
-      const RUNG_COUNT  = 10;    // base-pair rungs per turn
-      const SPEED       = 0.3;   // px per frame scroll speed
+      const PERIOD      = 280;
+      const AMPLITUDE   = 90;
+      const NODE_RADIUS = 4.5;
+      const RUNG_COUNT  = 10;
+      const SPEED       = 0.3;
 
       let offset = 0;
       let raf;
 
-      function resize() {
-        canvas.width  = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
-      }
-
+      function resize() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
       window.addEventListener('resize', resize);
       resize();
 
-      /**
-       * For a given y position along the helix axis and a phase offset,
-       * returns the x coordinate of a strand backbone point.
-       * Strand A: sin(phase), Strand B: sin(phase + π)
-       */
       function strandX(y, phase, cx) {
         return cx + AMPLITUDE * Math.sin((2 * Math.PI * y / PERIOD) + phase);
       }
 
       function draw() {
-        const W  = canvas.width;
-        const H  = canvas.height;
-        const cx = W * 0.42; // horizontal centre of helix
-
+        const W = canvas.width, H = canvas.height, cx = W * 0.42;
         ctx.clearRect(0, 0, W, H);
+        const totalY = H + PERIOD, startY = -PERIOD / 2, steps = 400, dy = totalY / steps;
 
-        const totalY   = H + PERIOD;
-        const startY   = -PERIOD / 2;
-        const steps    = 400; // polyline resolution
-        const dy       = totalY / steps;
-
-        // ── Draw strand backbones ──────────────────────────────────────
         function drawStrand(phaseOffset, color) {
-          ctx.beginPath();
-          ctx.strokeStyle = color;
-          ctx.lineWidth   = 2.5;
-          ctx.lineCap     = 'round';
+          ctx.beginPath(); ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.lineCap = 'round';
           for (let i = 0; i <= steps; i++) {
-            const y = startY + i * dy;
-            const x = strandX(y + offset, phaseOffset, cx);
-            if (i === 0) ctx.moveTo(x, y);
-            else         ctx.lineTo(x, y);
+            const y = startY + i * dy, x = strandX(y + offset, phaseOffset, cx);
+            if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
           }
           ctx.stroke();
         }
 
-        drawStrand(0,      STRAND_COLOR_A);
+        drawStrand(0, STRAND_COLOR_A);
         drawStrand(Math.PI, STRAND_COLOR_B);
 
-        // ── Draw base-pair rungs and nodes ────────────────────────────
         const rungsTotal = Math.ceil(totalY / (PERIOD / RUNG_COUNT)) + 2;
         for (let r = 0; r < rungsTotal; r++) {
-          const yRaw  = startY + r * (PERIOD / RUNG_COUNT);
-          const y     = yRaw;
-          const yOff  = y + offset;
-          const xA    = strandX(yOff, 0,         cx);
-          const xB    = strandX(yOff, Math.PI,   cx);
-
-          // depth cue: nodes behind the axis (cos < 0) are dimmer
+          const y = startY + r * (PERIOD / RUNG_COUNT);
+          const yOff = y + offset;
+          const xA = strandX(yOff, 0, cx), xB = strandX(yOff, Math.PI, cx);
           const cosVal = Math.cos((2 * Math.PI * yOff / PERIOD));
-          const alpha  = 0.35 + 0.65 * ((cosVal + 1) / 2);
-
-          // rung line
-          ctx.beginPath();
-          ctx.strokeStyle = RUNG_COLOR;
-          ctx.lineWidth   = 1.5;
-          ctx.globalAlpha = alpha * 0.8;
-          ctx.moveTo(xA, y);
-          ctx.lineTo(xB, y);
-          ctx.stroke();
-          ctx.globalAlpha = 1;
-
-          // base colour (alternating 4 bases)
+          const alpha = 0.35 + 0.65 * ((cosVal + 1) / 2);
           const baseIdx = r % 4;
 
-          // node A
-          ctx.beginPath();
-          ctx.fillStyle   = BASE_COLORS[baseIdx];
-          ctx.globalAlpha = alpha;
-          ctx.arc(xA, y, NODE_RADIUS, 0, Math.PI * 2);
-          ctx.fill();
+          ctx.beginPath(); ctx.strokeStyle = RUNG_COLOR; ctx.lineWidth = 1.5;
+          ctx.globalAlpha = alpha * 0.8;
+          ctx.moveTo(xA, y); ctx.lineTo(xB, y); ctx.stroke();
+          ctx.globalAlpha = 1;
 
-          // node B (complementary base — offset by 2 in the palette)
-          ctx.beginPath();
-          ctx.fillStyle   = BASE_COLORS[(baseIdx + 2) % 4];
-          ctx.arc(xB, y, NODE_RADIUS, 0, Math.PI * 2);
-          ctx.fill();
-
+          ctx.beginPath(); ctx.fillStyle = BASE_COLORS[baseIdx]; ctx.globalAlpha = alpha;
+          ctx.arc(xA, y, NODE_RADIUS, 0, Math.PI * 2); ctx.fill();
+          ctx.beginPath(); ctx.fillStyle = BASE_COLORS[(baseIdx + 2) % 4];
+          ctx.arc(xB, y, NODE_RADIUS, 0, Math.PI * 2); ctx.fill();
           ctx.globalAlpha = 1;
         }
 
-        // ── Animate ────────────────────────────────────────────────────
         offset += SPEED;
         if (offset > PERIOD) offset -= PERIOD;
-
         raf = requestAnimationFrame(draw);
       }
 
       draw();
 
-      // Pause when hero is not visible to save resources
       const heroEl = document.getElementById('hero');
-      const heroObs = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting) {
-          if (!raf) raf = requestAnimationFrame(draw);
-        } else {
-          cancelAnimationFrame(raf);
-          raf = null;
-        }
-      }, { threshold: 0.01 });
-      heroObs.observe(heroEl);
+      new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) { if (!raf) raf = requestAnimationFrame(draw); }
+        else { cancelAnimationFrame(raf); raf = null; }
+      }, { threshold: 0.01 }).observe(heroEl);
     })();
   </script>
 
