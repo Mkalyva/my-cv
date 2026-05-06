@@ -311,7 +311,60 @@
       align-items: start;
     }
     .about-text p { color: var(--body); margin-bottom: 1.2rem; font-size: 1.05rem; }
-    .meta-item { margin-bottom: 1.8rem; }
+    .about-meta { margin-bottom: 1.8rem; }
+    .about-photos { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .photo-stack {
+      position: relative;
+      height: 340px;
+    }
+    .photo-frame {
+      position: absolute;
+      width: 75%;
+      background: white;
+      border: 1px solid var(--border);
+      padding: 8px 8px 32px;
+      box-shadow: 0 4px 20px rgba(13,27,42,0.10);
+    }
+    .photo-frame img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .photo-frame--back {
+      top: 0;
+      left: 0;
+      transform: rotate(-3deg);
+      z-index: 1;
+    }
+    .photo-frame--front {
+      top: 60px;
+      left: 28%;
+      transform: rotate(2.5deg);
+      z-index: 2;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .photo-frame--front:hover {
+      transform: rotate(0deg) scale(1.03);
+      box-shadow: 0 8px 32px rgba(13,27,42,0.18);
+    }
+    .photo-frame--back:hover {
+      transform: rotate(0deg) scale(1.03);
+      box-shadow: 0 8px 32px rgba(13,27,42,0.18);
+      z-index: 3;
+    }
+    .photo-caption {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-align: center;
+      padding-top: 8px;
+    }
+    .about-meta-inline { padding-top: 0.5rem; }
+    .about-meta-inline .meta-item { margin-bottom: 1.2rem; }
     .meta-label {
       font-family: var(--mono);
       font-size: 0.65rem;
@@ -495,14 +548,26 @@
           <p>I then did my PhD at EMBL-EBI, Cambridge, becoming an expert in cancer genomics and cancer evolution.</p>
           <p>I'm currently a fellow between UCL and the Crick Institute, using long-read RNA technologies to understand transcriptomic diversity in multi-regional cancer patient data.</p>
         </div>
-        <div class="about-meta reveal" style="transition-delay:0.1s">
-          <div class="meta-item">
-            <p class="meta-label">Location</p>
-            <p class="meta-value">London, United Kingdom</p>
+        <div class="about-photos reveal" style="transition-delay:0.1s">
+          <div class="photo-stack">
+            <div class="photo-frame photo-frame--back">
+              <img src="IMG_6905.png" alt="Maria Kalyva at Cambridge graduation" />
+              <p class="photo-caption">PhD graduation · Cambridge</p>
+            </div>
+            <div class="photo-frame photo-frame--front">
+              <img src="IMG_9389.png" alt="Maria Kalyva at Brooklyn Bridge" />
+              <p class="photo-caption">Brooklyn Bridge · New York</p>
+            </div>
           </div>
-          <div class="meta-item">
-            <p class="meta-label">Expertise</p>
-            <p class="meta-value">Single-cell · Multi-omics · Cancer Genomics</p>
+          <div class="about-meta-inline">
+            <div class="meta-item">
+              <p class="meta-label">Location</p>
+              <p class="meta-value">London, United Kingdom</p>
+            </div>
+            <div class="meta-item">
+              <p class="meta-label">Expertise</p>
+              <p class="meta-value">Single-cell · Multi-omics · Cancer Genomics</p>
+            </div>
           </div>
         </div>
       </div>
