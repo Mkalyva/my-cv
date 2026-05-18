@@ -578,14 +578,8 @@
   <section id="experience">
     <div class="container">
       <p class="section-label reveal">02 — Skills</p>
-      <div class="reveal" style="transition-delay:0.1s;">
-        <div style="position:relative; width:100%; padding-bottom:56.25%; height:0; overflow:hidden;">
-          <iframe
-            src="https://reallifetalenttree.com/embed/mkalyva/bioinformatics"
-            style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;"
-            title="Maria Kalyva — Skills"
-          ></iframe>
-        </div>
+      <div class="paths-grid" id="paths-grid">
+        <!-- rendered by JS from JSON -->
       </div>
     </div>
   </section>
@@ -727,6 +721,82 @@
     reveals.forEach(el => { if (!el.closest('#hero')) observer.observe(el); });
 
 
+
+    /* ── Skills tree from JSON ─────────────────────────────────────── */
+    const LEVEL_LABELS = ['', 'Foundational', 'Basic', 'Proficient', 'Advanced', 'Expert'];
+
+    const skillsData = {
+      "paths": [
+        {
+          "name": "Scientific",
+          "talents": [
+            { "name": "Mutation Calling (SNV, CNV, SV)", "level": 5 },
+            { "name": "Long-read omics",                 "level": 4 },
+            { "name": "Single-cell analysis",            "level": 3 },
+            { "name": "Cancer research",                 "level": 4 },
+            { "name": "Transcriptomics",                 "level": 4 },
+            { "name": "Cancer evolution",                "level": 4 }
+          ]
+        },
+        {
+          "name": "Coding",
+          "talents": [
+            { "name": "Python",             "level": 3 },
+            { "name": "R",                  "level": 4 },
+            { "name": "GitHub",             "level": 3 },
+            { "name": "Nextflow",           "level": 2 },
+            { "name": "Data visualisation", "level": 4 }
+          ]
+        },
+        {
+          "name": "Soft Skills",
+          "talents": [
+            { "name": "Project Management", "level": 3 },
+            { "name": "Supervision",        "level": 2 },
+            { "name": "Teaching",           "level": 3 },
+            { "name": "Speaking",           "level": 3 },
+            { "name": "Writing",            "level": 4 }
+          ]
+        }
+      ]
+    };
+
+    function renderPips(level) {
+      return Array.from({ length: 5 }, (_, i) =>
+        `<span class="level-pip ${i < level ? 'filled' : ''}"></span>`
+      ).join('');
+    }
+
+    const grid = document.getElementById('paths-grid');
+
+    skillsData.paths.forEach((path, pi) => {
+      const col = document.createElement('div');
+      col.className = 'path-column reveal';
+      col.style.transitionDelay = `${pi * 0.1}s`;
+
+      const header = document.createElement('p');
+      header.className = 'path-header';
+      header.textContent = path.name;
+      col.appendChild(header);
+
+      path.talents.forEach((t) => {
+        const item = document.createElement('div');
+        item.className = 'talent-item';
+        item.innerHTML = `
+          <div class="talent-card">
+            <p class="talent-name">${t.name}</p>
+            <div class="talent-level">
+              ${renderPips(t.level)}
+              <span class="talent-level-label">${LEVEL_LABELS[t.level]}</span>
+            </div>
+          </div>`;
+        col.appendChild(item);
+      });
+
+      grid.appendChild(col);
+    });
+
+    document.querySelectorAll('#paths-grid .reveal').forEach(el => observer.observe(el));
 
     /* ── DNA Double Helix Canvas ───────────────────────────────────── */
     (function() {
